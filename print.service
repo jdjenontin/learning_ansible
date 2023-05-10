@@ -1,0 +1,9 @@
+[Unit]
+Description=Print "hello world" every second
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c 'while true; do echo "hello world"; sleep 1; done'
+
+[Install]
+WantedBy=multi-user.target

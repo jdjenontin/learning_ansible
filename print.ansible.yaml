@@ -1,0 +1,26 @@
+---
+- name: Create and activate print.service
+  hosts: logicservers
+  become: yes
+
+  tasks:
+    - name: "test recheable"
+      ping:
+
+    - name: Copy print.service file
+      copy:
+        src: print.service
+        dest: /etc/systemd/system/
+        mode: 0644
+      notify:
+        - Reload systemd configuration
+
+    - name: Start print.service
+      systemd:
+        name: print.service
+        state: started
+
+  handlers:
+    - name: Reload systemd configuration
+      systemd:
+        daemon_reload: yes

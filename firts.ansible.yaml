@@ -1,0 +1,17 @@
+---
+  - hosts: localhost
+    become: yes
+    name: "My first play"
+
+    tasks:
+
+    - name: "test reacheable"
+      ping:
+
+    - name: "update packages"
+      ansible.builtin.apt:
+        update_cache: yes
+    
+    - name: "upgrade packages"
+      ansible.builtin.apt:
+        upgrade: yes
